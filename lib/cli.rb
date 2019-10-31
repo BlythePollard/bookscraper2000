@@ -1,13 +1,13 @@
 class Cli
 
-  def self.call
+  def call
     puts "\nWelcome to the Bookfinder 2000! With this app, you'll be able to find a great read that is custom-tailored to your preferences. Ready to search? (y/n)\n"
     input = gets.strip
   end
 
-  def self.get_genre_choice
+  def get_genre_choice
       puts "\nEnter the number of the genre you'd like more info on or type list to see the genres again or type exit:\n"
-        chosen_genre = gets.strip
+        gets.strip
     end
 
 end
