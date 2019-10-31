@@ -6,9 +6,10 @@ class Scraper
   def initialize
   end
 
-  def scrape
-    page = Nokogiri::HTML(open("https://www.goodreads.com/choiceawards/best-fiction-books-2018"))
+  def scrape(page_url)
+    page = Nokogiri::HTML(open(page_url))
     books = page.css("div.resultShown")
   end
 
 end
+#https://www.goodreads.com/choiceawards/best-fiction-books-2018

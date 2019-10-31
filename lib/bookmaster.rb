@@ -1,11 +1,12 @@
 class Bookmaster
 
   def initialize
-    Cli.new.call
+    Cli.call
   end
 
   attr_reader :books
   #define method and make it readable to outside class
+
   def initialize
     @books = []
   end
@@ -15,13 +16,25 @@ class Bookmaster
       supply_genres
     else puts "Too bad. See you later!"
     end
-  
+  end
+
   def supply_genres
     @genres = ["Best Fiction", "Best Fantasy", "Best Horror", "Best Nonfiction", "Best Science & Technology", "Best Food & Cookbooks", "Best Graphic Novels & Comics"]
     @genres.each.with_index(1) do |g, i|
     puts "#{i}. #{g}"
     @genre = "#{g}"
+    Cli.get_genre_choice
     end
+  end
+
+  def genre_choice(chosen_genre)
+    if chosen_genre == "Best Fiction"
+      page_url = "https://www.goodreads.com/choiceawards/best-fiction-books-2018"
+    #elsif chosen_genre == "Best Fantasy"
+      #page_url = "https://www.goodreads.com/choiceawards/best-fantasy-books-2018"
+    #etc
+  end
+    Scraper.scrape(page_url)
   end
 
   def create_books
