@@ -9,11 +9,15 @@ class Bookmaster
   attr_reader :books
 
   def initialize
-    @cli = Cli.new
-    #@first_input = @cli.call
+    @cli = Cli.new #doesn't have to be here
     @books = []
-    ready_to_search?
+    ready_to_search? #think about moving to self.start_search
     genre_choice
+    #think about refactoring this
+  end
+
+  def self.start_search
+    self.new #local var, call methods on it
   end
 
   def ready_to_search?
@@ -21,7 +25,7 @@ class Bookmaster
     if @first_input == "y"
       supply_genres
     else
-      puts "Too bad. See you later!".red
+      puts "Too bad. See you later!"
       exit
     end
   end
@@ -98,4 +102,4 @@ class Bookmaster
 
 end
 
-Bookmaster.new
+Bookmaster.start_search

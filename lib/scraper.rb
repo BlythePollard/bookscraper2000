@@ -12,4 +12,3 @@ class Scraper
   end
 
 end
-#https://www.goodreads.com/choiceawards/best-fiction-books-2018
