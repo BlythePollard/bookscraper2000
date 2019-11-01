@@ -2,6 +2,7 @@ require_relative '../lib/book.rb'
 require_relative '../lib/cli.rb'
 require_relative '../lib/scraper.rb'
 require 'pry'
+require 'colorize'
 
 class Bookmaster
 
@@ -19,14 +20,14 @@ class Bookmaster
     @first_input = @cli.call
     if @first_input == "y"
       supply_genres
-    else 
-      puts "Too bad. See you later!"
+    else
+      puts "Too bad. See you later!".red
       exit
     end
   end
 
   def supply_genres
-    @genres = ["Best Fiction", "Best Fantasy", "Best Horror", "Best Nonfiction", "Best Science & Technology", "Best Food & Cookbooks", "Best Graphic Novels & Comics"]
+    @genres = ["Best Fiction", "Best Fantasy", "Best Horror", "Best Nonfiction", "Best Science & Technology", "Best Food & Cookbooks", "Best Graphic Novels & Comics", "Best Historical Fiction", "Best Memoir & Autobiography", "Best History & Biography"]
     @genres.each.with_index(1) do |g, i|
     puts "#{i}. #{g}"
     end
@@ -48,6 +49,12 @@ class Bookmaster
       page_url = "https://www.goodreads.com/choiceawards/best-food-cookbooks-2018"
     elsif @second_input == "7"
       page_url = "https://www.goodreads.com/choiceawards/best-graphic-novels-comics-2018"
+    elsif @second_input == "8"
+      page_url = "https://www.goodreads.com/choiceawards/best-historical-fiction-books-2018"
+    elsif @second_input == "9"
+      page_url = "https://www.goodreads.com/choiceawards/best-memoir-autobiography-books-2018"
+    elsif @second_input == "10"
+      page_url = "https://www.goodreads.com/choiceawards/best-history-biography-books-2018"
     elsif @second_input == "exit"
       exit
     elsif @second_input == "genres"
@@ -71,9 +78,10 @@ class Bookmaster
    end
 
    def display_books
+     puts "\nHere are your top reads:\n".red
      @books.each.with_index(1) do |book, index|
-     puts "#{index}. #{book.title} - #{book.upvotes} upvotes - URL: https://www.goodreads.com#{book.url}"
-     #color code these outputs (ie blue underlined urls)
+     puts "#{index}. #{book.title}: #{book.upvotes} upvotes"
+     puts "URL: https://www.goodreads.com#{book.url}".blue
      end
      end_or_repeat
    end
@@ -81,15 +89,13 @@ class Bookmaster
    def end_or_repeat
       @third_input = Cli.new.get_final_choice
       if @third_input == "exit"
+        puts "Come again soon!"
         exit
       elsif @third_input == "genres"
-        ready_to_search?
+        Bookmaster.new
     end
    end
 
 end
 
 Bookmaster.new
-
-
-#does the heavy lifting. takes in info from other classes and initializes objects according to user input

@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Cli
 
   def call
