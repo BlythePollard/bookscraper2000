@@ -9,17 +9,19 @@ class Bookmaster
 
   def initialize
     @cli = Cli.new
-    @first_input = @cli.call
+    #@first_input = @cli.call
     @books = []
     ready_to_search?
     genre_choice
   end
 
   def ready_to_search?
+    @first_input = @cli.call
     if @first_input == "y"
       supply_genres
-    else #error here
+    else 
       puts "Too bad. See you later!"
+      exit
     end
   end
 
@@ -50,6 +52,9 @@ class Bookmaster
       exit
     elsif @second_input == "genres"
       supply_genres
+    else
+      puts "Try again!" #not working
+      ready_to_search?
     end
     create_books(page_url)
   end
@@ -78,7 +83,7 @@ class Bookmaster
       if @third_input == "exit"
         exit
       elsif @third_input == "genres"
-        ready_to_search? #this fails to initiate another input!
+        ready_to_search?
     end
    end
 
