@@ -11,9 +11,10 @@ class Bookmaster
   def initialize
     @cli = Cli.new #doesn't have to be here
     @books = []
-    ready_to_search? #think about moving to self.start_search
+    ready_to_search?
     genre_choice
     #think about refactoring this
+    #think about moving to self.start_search
   end
 
   def self.start_search
@@ -64,8 +65,8 @@ class Bookmaster
     elsif @second_input == "genres"
       supply_genres
     else
-      puts "Try again!" #not working
-      ready_to_search?
+      puts "Try again!"
+      Bookmaster.new
     end
     create_books(page_url)
   end
