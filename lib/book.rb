@@ -9,5 +9,3 @@ class Book
   end
 
 end
-
-#creates books that will have specific attributes

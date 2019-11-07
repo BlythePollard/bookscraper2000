@@ -9,16 +9,14 @@ class Bookmaster
   attr_reader :books
 
   def initialize
-    @cli = Cli.new #doesn't have to be here
+    @cli = Cli.new
     @books = []
     ready_to_search?
     genre_choice
-    #think about refactoring this
-    #think about moving to self.start_search
   end
 
   def self.start_search
-    self.new #local var, call methods on it
+    self.new 
   end
 
   def ready_to_search?

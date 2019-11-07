@@ -18,5 +18,3 @@ class Cli
   end
 
 end
-
-#JUST puts and gets information
